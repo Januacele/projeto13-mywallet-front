@@ -2,13 +2,12 @@
 * {
     box-sizing: border-box;
 
-    --cor-fundo: #A328D6;
-    --cor-azul: #126BA5;
   }
   
   body {
-    width: 100vw; 
+    width: 100vw;
     height: 100vh;
+    background-color: #8C11BE;
   }
   
   body::-webkit-scrollbar {

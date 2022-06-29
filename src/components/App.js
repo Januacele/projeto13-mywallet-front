@@ -6,8 +6,8 @@ import styled from "styled-components";
 import TelaLogin from './TelaLogin/TelaLogin';
 import TelaCadastro from './TelaCadastro/TelaCadastro';
 import TelaPrimeiroAcesso from './TelaPrimeiroAcesso/TelaPrimeiroAcesso';
-import TelaCadastroEntrada from './TelaCadastroEntrada/TelaCadastroEntrada';
-import TelaCadastroSaida from './TelaCadastroSaida/TelaCadastroSaida';
+import TelaNovaEntrada from './TelaNovaEntrada/TelaNovaEntrada';
+import TelaNovaSaida from './TelaNovaSaida/TelaNovaSaida';
 import TelaHistorico from './TelaHistorico/TelaHistorico';
 
 
@@ -21,8 +21,8 @@ export default function App() {
           <Route path="/" element={<TelaLogin />}></Route>
           <Route path="/cadastro" element={<TelaCadastro />}></Route>
           <Route path="/primeiroAcesso" element={<TelaPrimeiroAcesso />}></Route>
-          <Route path="/cadastroEntrada" element={<TelaCadastroEntrada />}></Route>
-          <Route path="/cadastroSaida" element={<TelaCadastroSaida />}></Route>
+          <Route path="/novaEntrada" element={<TelaNovaEntrada />}></Route>
+          <Route path="/novaSaida" element={<TelaNovaSaida />}></Route>
           <Route path="/historico" element={<TelaHistorico />}></Route>
         </Routes>
       </BrowserRouter>
