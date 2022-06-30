@@ -1,64 +1,98 @@
+import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import { useState } from 'react';
+import { ThreeDots } from 'react-loader-spinner';
 import Logo from '../../assets/images/MyWallet.png';
-import styled from 'styled-components';
 
 
-export default function TelaCadastro(){
+export default function TelaCadastro() {
+
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [repeatedPassword, setRepeatedPassword] = useState("");
+    const [loading, setLoading] = useState(false);
 
 
-    function HandleSubmit() {
+    async function HandleSubmit(event) {
+        event.preventDefault();
+        setLoading(true);
 
-        const navigate = useNavigate();
-        const URL = `https://localhost:5000/`;
+        if (password !== repeatedPassword) {
+            window.alert("As senhas não correspondem. Tente novamente!");
+            setLoading(false);
+            return;
+        }
 
-        axios.post(URL, usuario).then(res => {
-            console.log(res)
-            setTimeout(()=>{
-                navigate("/")
-            }, 1500)
-        }).catch(err => {
-            console.log(err.response);
-        });
+        const body = {
+            name,
+            email,
+            password
+        };
+
+        try {
+            const response = await axios.post("https://localhost:5000/cadastrar", body);
+            proximaPagina();
+        } catch (e) {
+            window.alert("Erro no cadastro. Tente novamente!");
+            console.log(e);
+            setLoading(false);
+        }
+    };
+
+
+    let navigate = useNavigate();
+
+    function proximaPagina() {
+        navigate("/");
     }
 
-    return(
-        <> 
-            <div>
-                <Container>
-                    <form onSubmit={HandleSubmit}>
-                        <div className='logo'>
-                            <img src={Logo} alt="Logo-My Wallet" />
-                        </div> 
-
-                        <input type="nome" placeholder="Nome"/>
-
-                        <input type="email" placeholder="Email"/>
-
-                        <input type="senha" placeholder="Senha"/>
-
-                        <input type="senhaConfirmada" placeholder="Confirme a senha"/>
-
-                        <div>
-                            <button onClick={HandleSubmit}> Cadastrar </button>
-                        </div>
-
-                        <Link to={`/`}>
-                            <p> Já tem uma conta? Faça Login! </p>                     
-                        </Link>
-                    </form>
-                </Container>
-               
-            </div>
-        </>
+    return !loading ? (
+        <div>
+            <Container>
+                <div className='logo'>
+                    <img src={Logo} alt="Logo-My Wallet" />
+                </div>
+                <form onSubmit={HandleSubmit}>
+                    <input type="name" value={name} onChange={e => setName(e.target.value)} placeholder="Nome" required />
+                    <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" required />
+                    <input type="senha" value={password} onChange={e => setPassword(e.target.value)} placeholder="Senha" required />
+                    <input type="senhaConfirmada" value={repeatedPassword} onChange={e => setRepeatedPassword(e.target.value)} placeholder="Confirme a senha" required />
+                    <button type="submit"> Cadastrar </button>
+                </form>
+                <Link to="/">
+                    <p> Já tem uma conta? Faça Login! </p>
+                </Link>
+            </Container>
+        </div>
+    ) : (
+        <div>
+            <Container>
+                <form onSubmit={HandleSubmit}>
+                    <div className='logo'>
+                        <img src={Logo} alt="Logo-My Wallet" />
+                    </div>
+                    <input type="nome" value={name} onChange={e => setName(e.target.value)} placeholder="Nome" disabled />
+                    <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" disabled />
+                    <input type="senha" value={password} onChange={e => setPassword(e.target.value)} placeholder="Senha" disabled />
+                    <input type="senhaConfirmada" value={repeatedPassword} onChange={e => setRepeatedPassword(e.target.value)} placeholder="Confirme a senha" disabled />
+                    <button type="submit" className='loading' disabled>
+                        <ThreeDots color="FFFFFF" heigth={50} width={50} />
+                    </button>
+                </form>
+                <Link to="/">
+                    <p> Já tem uma conta? Faça Login! </p>
+                </Link>
+            </Container>
+        </div>
     );
 }
 
 
 const Container = styled.div`
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: #8C11BE;
     display: flex;
     flex-direction: column;
@@ -123,5 +157,9 @@ const Container = styled.div`
         font-size: 15px;
         line-height: 18px;
         color: #FFFFFF;
+    }
+
+    .loading{
+        opacity: 0.5;
     }
 `
