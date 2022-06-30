@@ -1,17 +1,28 @@
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 import Logo from '../../assets/images/MyWallet.png';
 import styled from 'styled-components';
 
 
-
-function HandleSubmit(e) {
-
-}
-
-
-
 export default function TelaCadastro(){
+
+
+    function HandleSubmit() {
+
+        const navigate = useNavigate();
+        const URL = `https://localhost:5000/`;
+
+        axios.post(URL, usuario).then(res => {
+            console.log(res)
+            setTimeout(()=>{
+                navigate("/")
+            }, 1500)
+        }).catch(err => {
+            console.log(err.response);
+        });
+    }
+
     return(
         <> 
             <div>
