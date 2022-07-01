@@ -6,7 +6,7 @@ import { useContext, useState } from "react";
 import TokenContext from "../../contexts/TokenContext.js";
 import UserContext from "../../contexts/UserContext.js";
 
-export default function TelaLogin(){
+export default function TelaLogin() {
 
     const { setToken } = useContext(TokenContext);
     const { setUser } = useContext(UserContext);
@@ -48,48 +48,57 @@ export default function TelaLogin(){
         navigate("/carteira");
     }
 
-    return(
-        <> 
-            <div>
-                <Container>
-                    <h1>My Wallet</h1>
-
-                    <input type="email" placeholder="Email"/>
-
-                    <input type="senha" placeholder="Senha"/>
-
-                    <div>
-                        <button onClick={HandleSubmit}> Entrar </button>
-                    </div>
-
-                    <Link to={`/cadastro`}>
-                        <p> Primeira vez? Cadastre-se!</p>                     
-                    </Link>
-                    
-                </Container>
-               
-            </div>
-        </>
+    return !loading ? (
+        <Container>
+            <h1>My Wallet</h1>
+            <form onSubmit={HandleSubmit}>
+                <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" required />
+                <input type="senha" value={password} onChange={e => setPassword(e.target.value)} placeholder="Senha" required/>
+                <button type="submit"> Entrar </button>
+            </form>
+            <Link to={`/cadastro`}>
+                <p> Primeira vez? Cadastre-se!</p>
+            </Link>
+        </Container>
+    ) : (
+        <Container>
+            <h1>My Wallet</h1>
+            <form onSubmit={HandleSubmit}>
+                <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" disabled />
+                <input type="senha" value={password} onChange={e => setPassword(e.target.value)} placeholder="Senha" disabled />
+                <button type="submit" className="loading" disabled> 
+                    <ThreeDots color="#FFFFFF" height={50} width={50} />
+                </button>
+            </form>
+            <Link to={"/cadastro"}>
+                <p> Primeira vez? Cadastre-se!</p>
+            </Link>
+        </Container>
     );
 }
 
 
 const Container = styled.div`
-    width: 100%;
-    height: 100%;
-    background-color: #8C11BE;
+    max-width: 375px; 
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
     h1 {
-        margin: 95px 0 28px 0;
+        margin: 159px 0 24px 0;
         font-family: 'Saira Stencil One';
         font-weight: 400;
         font-size: 32px;
         line-height: 50px;
         color: #FFFFFF;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     input{
@@ -104,8 +113,9 @@ const Container = styled.div`
         font-size: 20px;
         line-height: 23px;
         color: #000000;
-        margin-left: 14px;
-        margin-top: 20px;
+        padding: 15px;
+        margin-bottom: 13px;
+        border-style: none;
     }
     
     button{
@@ -120,7 +130,10 @@ const Container = styled.div`
         font-weight: 700;
         font-size: 20px;
         color: #FFFFFF;
-        margin-left: 12px;
+        border-style: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
    
     a {
@@ -130,11 +143,14 @@ const Container = styled.div`
     
     p{
         margin-top: 36px;
-        font-family: 'Raleway';
         font-style: normal;
         font-weight: 700;
         font-size: 15px;
         line-height: 18px;
         color: #FFFFFF;
+    }
+
+    .loading {
+        opacity: 0.5;
     }
 `

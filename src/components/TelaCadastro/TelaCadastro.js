@@ -88,7 +88,6 @@ export default function TelaCadastro() {
 const Container = styled.div`
     width: 100%;
     height: 100vh;
-    background-color: #8C11BE;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -150,7 +149,6 @@ const Container = styled.div`
     }
     
     p{
-        font-family: 'Raleway';
         font-style: normal;
         font-weight: 700;
         font-size: 15px;
