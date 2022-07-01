@@ -7,11 +7,9 @@ import { useState } from "react";
 
 export default function TelaLogin() {
 
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
-
 
 
     async function HandleSubmit(event) {
@@ -39,7 +37,7 @@ export default function TelaLogin() {
     let navigate = useNavigate();
 
     function proximaPagina() {
-        navigate("/carteira");
+        navigate("/historico");
     }
 
     return !loading ? (
@@ -70,7 +68,6 @@ export default function TelaLogin() {
         </Container>
     );
 }
-
 
 const Container = styled.div`
     max-width: 375px; 

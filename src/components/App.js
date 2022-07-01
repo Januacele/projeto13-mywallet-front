@@ -5,7 +5,6 @@ import "../assets/reset/reset.css";
 
 import TelaLogin from './TelaLogin/TelaLogin';
 import TelaCadastro from './TelaCadastro/TelaCadastro';
-import TelaPrimeiroAcesso from './TelaPrimeiroAcesso/TelaPrimeiroAcesso';
 import TelaNovaEntrada from './TelaNovaEntrada/TelaNovaEntrada';
 import TelaNovaSaida from './TelaNovaSaida/TelaNovaSaida';
 import TelaHistorico from './TelaHistorico/TelaHistorico';
@@ -25,7 +24,6 @@ export default function App() {
             <Routes>
               <Route path="/" element={<TelaLogin />}></Route>
               <Route path="/cadastro" element={<TelaCadastro />}></Route>
-              <Route path="/primeiroAcesso" element={<TelaPrimeiroAcesso />}></Route>
               <Route path="/novaEntrada" element={<TelaNovaEntrada />}></Route>
               <Route path="/novaSaida" element={<TelaNovaSaida />}></Route>
               <Route path="/historico" element={<TelaHistorico />}></Route>
