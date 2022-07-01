@@ -1,18 +1,57 @@
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { ThreeDots } from "react-loader-spinner";
 import styled from 'styled-components';
-
-
-function HandleSubmit(e) {
-
-}
-
+import { useContext, useState } from "react";
+import TokenContext from "../../contexts/TokenContext.js";
+import UserContext from "../../contexts/UserContext.js";
 
 export default function TelaLogin(){
+
+    const { setToken } = useContext(TokenContext);
+    const { setUser } = useContext(UserContext);
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
+
+
+
+    async function HandleSubmit(event) {
+        event.preventDefault();
+        setLoading(true);
+
+        const body = {
+            email,
+            password
+        };
+
+        try {
+            const response = await axios.post("http://localhost:5000/login", body);
+            console.log(response);
+
+            setToken(response.data.token);
+            setUser(response.data.name);
+
+            proximaPagina()
+
+        } catch (e) {
+            window.alert("Usuário ou senha inválidos");
+            console.log(e);
+            setLoading(false);
+        }
+    }
+
+    let navigate = useNavigate();
+
+    function proximaPagina() {
+        navigate("/carteira");
+    }
+
     return(
         <> 
             <div>
                 <Container>
-                    
                     <h1>My Wallet</h1>
 
                     <input type="email" placeholder="Email"/>
