@@ -9,8 +9,8 @@ import TelaPrimeiroAcesso from './TelaPrimeiroAcesso/TelaPrimeiroAcesso';
 import TelaNovaEntrada from './TelaNovaEntrada/TelaNovaEntrada';
 import TelaNovaSaida from './TelaNovaSaida/TelaNovaSaida';
 import TelaHistorico from './TelaHistorico/TelaHistorico';
-import TokenContext from "./contexts/TokenContext.js";
-import UserContext from "./contexts/UserContext.js";
+import TokenContext from "../contexts/TokenContext";
+import UserContext from "../contexts/UserContext";
 
 export default function App() {
 
@@ -38,7 +38,7 @@ export default function App() {
 }
 
 const Div = styled.div`
-    background-color: #A328D6;
+    background-color:  #8C11BE;
     display: flex;
     justify-content: center;
     align-items: center;

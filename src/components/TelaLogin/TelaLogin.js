@@ -2,14 +2,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ThreeDots } from "react-loader-spinner";
 import styled from 'styled-components';
-import { useContext, useState } from "react";
-import TokenContext from "../../contexts/TokenContext.js";
-import UserContext from "../../contexts/UserContext.js";
+import { useState } from "react";
+
 
 export default function TelaLogin() {
 
-    const { setToken } = useContext(TokenContext);
-    const { setUser } = useContext(UserContext);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -29,9 +26,6 @@ export default function TelaLogin() {
         try {
             const response = await axios.post("http://localhost:5000/login", body);
             console.log(response);
-
-            setToken(response.data.token);
-            setUser(response.data.name);
 
             proximaPagina()
 
@@ -87,7 +81,7 @@ const Container = styled.div`
     justify-content: center;
 
     h1 {
-        margin: 159px 0 24px 0;
+        margin: 70px 0 20px 0;
         font-family: 'Saira Stencil One';
         font-weight: 400;
         font-size: 32px;
