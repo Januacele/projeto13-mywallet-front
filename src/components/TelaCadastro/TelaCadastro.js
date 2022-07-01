@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
 import { ThreeDots } from 'react-loader-spinner';
-import Logo from '../../assets/images/MyWallet.png';
 
 
 export default function TelaCadastro() {
@@ -32,7 +31,7 @@ export default function TelaCadastro() {
         };
 
         try {
-            const response = await axios.post("https://localhost:5000/cadastrar", body);
+            const response = await axios.post("http://localhost:5000/cadastrar", body);
             proximaPagina();
         } catch (e) {
             window.alert("Erro no cadastro. Tente novamente!");
@@ -51,9 +50,7 @@ export default function TelaCadastro() {
     return !loading ? (
         <div>
             <Container>
-                <div className='logo'>
-                    <img src={Logo} alt="Logo-My Wallet" />
-                </div>
+                <h1>My Wallet</h1>
                 <form onSubmit={HandleSubmit}>
                     <input type="name" value={name} onChange={e => setName(e.target.value)} placeholder="Nome" required />
                     <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" required />
@@ -69,10 +66,8 @@ export default function TelaCadastro() {
     ) : (
         <div>
             <Container>
+                <h1>My Wallet</h1>
                 <form onSubmit={HandleSubmit}>
-                    <div className='logo'>
-                        <img src={Logo} alt="Logo-My Wallet" />
-                    </div>
                     <input type="nome" value={name} onChange={e => setName(e.target.value)} placeholder="Nome" disabled />
                     <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" disabled />
                     <input type="senha" value={password} onChange={e => setPassword(e.target.value)} placeholder="Senha" disabled />
@@ -99,24 +94,25 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
 
+    h1 {
+        margin: 80px 0 20px 0;
+        font-family: 'Saira Stencil One';
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 50px;
+        color: #FFFFFF;
+    }
+
     form {
-        width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
 
-    img{
-        width: 146px;
-        height: 50px;
-        margin-top: 100px;
-    }
-
     input{
         width: 326px;
         height: 58px;
-        margin-top: 20px;
         background: #FFFFFF;
         border-radius: 5px;
         font-family: 'Raleway';
@@ -125,14 +121,15 @@ const Container = styled.div`
         font-size: 20px;
         line-height: 23px;
         color: #000000;
-        margin-left: 14px;
-        margin-top: 20px;
+        padding: 15px;
+        margin-bottom: 13px;
+        border-style: none;
     }
     
         button{
             width: 326px;
             height: 46px;
-            margin-top: 12px;
+            margin-bottom: 36px;
             background-color: #A328D6;
             border-radius: 5px;
             cursor: pointer; 
@@ -141,7 +138,10 @@ const Container = styled.div`
             font-weight: 700;
             font-size: 20px;
             color: #FFFFFF;
-            margin-left: 12px;
+            border-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
    
     a {
@@ -150,7 +150,6 @@ const Container = styled.div`
     }
     
     p{
-        margin-top: 36px;
         font-family: 'Raleway';
         font-style: normal;
         font-weight: 700;

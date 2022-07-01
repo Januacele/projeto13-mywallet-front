@@ -1,6 +1,4 @@
 import { Link, useNavigate } from 'react-router-dom';
-
-import Logo from '../../assets/images/MyWallet.png';
 import styled from 'styled-components';
 
 
@@ -15,9 +13,7 @@ export default function TelaLogin(){
             <div>
                 <Container>
                     
-                    <div className='logo'>
-                        <img src={Logo} alt="Logo-My Wallet" />
-                    </div> 
+                    <h1>My Wallet</h1>
 
                     <input type="email" placeholder="Email"/>
 
@@ -48,10 +44,13 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
 
-    img{
-        width: 146px;
-        height: 50px;
-        margin-top: 100px;
+    h1 {
+        margin: 95px 0 28px 0;
+        font-family: 'Saira Stencil One';
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 50px;
+        color: #FFFFFF;
     }
 
     input{
