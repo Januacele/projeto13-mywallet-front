@@ -54,8 +54,8 @@ export default function TelaCadastro() {
                 <form onSubmit={HandleSubmit}>
                     <input type="name" value={name} onChange={e => setName(e.target.value)} placeholder="Nome" required />
                     <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" required />
-                    <input type="senha" value={password} onChange={e => setPassword(e.target.value)} placeholder="Senha" required />
-                    <input type="senhaConfirmada" value={repeatedPassword} onChange={e => setRepeatedPassword(e.target.value)} placeholder="Confirme a senha" required />
+                    <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Senha" required />
+                    <input type="password" value={repeatedPassword} onChange={e => setRepeatedPassword(e.target.value)} placeholder="Confirme a senha" required />
                     <button type="submit"> Cadastrar </button>
                 </form>
                 <Link to="/">
@@ -70,8 +70,8 @@ export default function TelaCadastro() {
                 <form onSubmit={HandleSubmit}>
                     <input type="nome" value={name} onChange={e => setName(e.target.value)} placeholder="Nome" disabled />
                     <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" disabled />
-                    <input type="senha" value={password} onChange={e => setPassword(e.target.value)} placeholder="Senha" disabled />
-                    <input type="senhaConfirmada" value={repeatedPassword} onChange={e => setRepeatedPassword(e.target.value)} placeholder="Confirme a senha" disabled />
+                    <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Senha" disabled />
+                    <input type="password" value={repeatedPassword} onChange={e => setRepeatedPassword(e.target.value)} placeholder="Confirme a senha" disabled />
                     <button type="submit" className='loading' disabled>
                         <ThreeDots color="FFFFFF" heigth={50} width={50} />
                     </button>

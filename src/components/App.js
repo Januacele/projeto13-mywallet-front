@@ -36,7 +36,7 @@ export default function App() {
 }
 
 const Div = styled.div`
-    background-color:  #8C11BE;
+    background-color: #8C11BE;
     display: flex;
     justify-content: center;
     align-items: center;

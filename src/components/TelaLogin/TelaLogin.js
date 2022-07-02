@@ -45,7 +45,7 @@ export default function TelaLogin() {
             <h1>My Wallet</h1>
             <form onSubmit={HandleSubmit}>
                 <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" required />
-                <input type="senha" value={password} onChange={e => setPassword(e.target.value)} placeholder="Senha" required/>
+                <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Senha" required/>
                 <button type="submit"> Entrar </button>
             </form>
             <Link to={`/cadastro`}>
@@ -57,7 +57,7 @@ export default function TelaLogin() {
             <h1>My Wallet</h1>
             <form onSubmit={HandleSubmit}>
                 <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" disabled />
-                <input type="senha" value={password} onChange={e => setPassword(e.target.value)} placeholder="Senha" disabled />
+                <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Senha" disabled />
                 <button type="submit" className="loading" disabled> 
                     <ThreeDots color="#FFFFFF" height={50} width={50} />
                 </button>

@@ -1,10 +1,27 @@
+import { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+// import UserContext from '../../contexts/UserContext';
+// import TokenContext from '../../contexts/TokenContext';
 import logout from '../../assets/images/logout.png';
 import plus from '../../assets/images/plus.png';
 import menus from '../../assets/images/menus.png';
-import styled from 'styled-components';
 
 
-export default function TelaPrimeiroAcesso(){
+export default function TelaHistorico(){
+
+    // const { user } = useContext(UserContext);
+    // const { token } = useContext(TokenContext);
+    // const [ entrada, setEntrada ] = useState([]);
+    // const [ saida, setSaida ] = useState([]);
+    // const [historico, setHistorico] = useState(0);
+
+    let navigate = useNavigate();
+    function nextPage(page){
+        navigate(`/${page}`);
+    }
+
     return(
                 <Container>
                     <header>
@@ -19,12 +36,12 @@ export default function TelaPrimeiroAcesso(){
                     </div>
 
                     <div className='botoes-movimentacao'> 
-                        <button>
+                        <button onClick={() => nextPage("novaEntrada")}>
                             <img src={plus} alt="Adicionar nova entrada" />
                             <p> Nova entrada </p>
                         </button>
                             
-                        <button>
+                        <button onClick={() => nextPage("novaSaida")}>
                             <img src={menus} alt="Adicionar nova saída" />
                             <p> Nova saída </p>
                         </button>
