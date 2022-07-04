@@ -14,7 +14,7 @@ export default function TelaNovaEntrada(){
 
     async function request(config, body){
         try {
-            await axios.post("http://localhost:5000/carteira", body, config);
+            await axios.post("http://localhost:5000/usuario", body, config);
 
             nextPage();
         } catch (error) {

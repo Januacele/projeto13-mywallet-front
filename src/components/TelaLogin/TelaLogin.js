@@ -2,10 +2,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ThreeDots } from "react-loader-spinner";
 import styled from 'styled-components';
-import { useState } from "react";
+import { useContext, useState } from "react";
+import TokenContext from '../../contexts/TokenContext';
+import UserContext from '../../contexts/UserContext';
 
 
 export default function TelaLogin() {
+
+    const { setToken } = useContext(TokenContext);
+    const { setUser } = useContext(UserContext);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -24,6 +29,9 @@ export default function TelaLogin() {
         try {
             const response = await axios.post("http://localhost:5000/login", body);
             console.log(response);
+
+            setToken(response.data.token);
+            setUser(response.data.name);
 
             proximaPagina()
 
