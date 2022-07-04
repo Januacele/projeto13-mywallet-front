@@ -1,15 +1,15 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import styled from "styled-components";
-import "../assets/reset/reset.css";
+import "./assets/reset/reset.css";
 
-import TelaLogin from './TelaLogin/TelaLogin';
-import TelaCadastro from './TelaCadastro/TelaCadastro';
-import TelaNovaEntrada from './TelaNovaEntrada/TelaNovaEntrada';
-import TelaNovaSaida from './TelaNovaSaida/TelaNovaSaida';
-import TelaHistorico from './TelaHistorico/TelaHistorico';
-import TokenContext from "../contexts/TokenContext";
-import UserContext from "../contexts/UserContext";
+import TelaLogin from './components/TelaLogin/TelaLogin';
+import TelaCadastro from './components/TelaCadastro/TelaCadastro';
+import TelaNovaEntrada from './components/TelaNovaEntrada/TelaNovaEntrada';
+import TelaNovaSaida from './components/TelaNovaSaida/TelaNovaSaida';
+import TelaHistorico from './components/TelaHistorico/TelaHistorico';
+import TokenContext from "./contexts/TokenContext";
+import UserContext from "./contexts/UserContext";
 
 export default function App() {
 
@@ -33,7 +33,7 @@ export default function App() {
     </TokenContext.Provider>
     </Div >
     );
-    }
+}
 
 const Div = styled.div`
     background-color: #8C11BE;

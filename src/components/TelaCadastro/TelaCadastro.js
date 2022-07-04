@@ -31,11 +31,10 @@ export default function TelaCadastro() {
         };
 
         try {
-            const response = await axios.post("http://localhost:5000/cadastrar", body);
+            const response = await axios.post("https://mywallet-janu.herokuapp.com/cadastrar", body);
             proximaPagina();
-        } catch (e) {
+        } catch (error) {
             window.alert("Erro no cadastro. Tente novamente!");
-            console.log(e);
             setLoading(false);
         }
     };

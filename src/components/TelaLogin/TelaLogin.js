@@ -27,7 +27,7 @@ export default function TelaLogin() {
         };
 
         try {
-            const response = await axios.post("http://localhost:5000/login", body);
+            const response = await axios.post("https://mywallet-janu.herokuapp.com/login", body);
             console.log(response);
 
             setToken(response.data.token);
@@ -35,12 +35,11 @@ export default function TelaLogin() {
 
             proximaPagina()
 
-        } catch (e) {
+        } catch (error) {
             window.alert("Usuário ou senha inválidos");
-            console.log(e);
             setLoading(false);
         }
-    }
+    };
 
     let navigate = useNavigate();
 

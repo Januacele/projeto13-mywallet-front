@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import TokenContext from '../../contexts/TokenContext';
 
 
-export default function TelaNovaEntrada(){
+export default function TelaNovaSaida(){
 
     const { token } = useContext(TokenContext);
 
@@ -14,20 +14,20 @@ export default function TelaNovaEntrada(){
 
     async function request(config, body){
         try {
-            await axios.post("http://localhost:5000/usuario", body, config);
-
-            nextPage();
+            await axios.post("https://mywallet-janu.herokuapp.com/carteira", body, config);
+            
+            proximaPagina();
+            
         } catch (error) {
             window.alert("Erro no regristo");
         }
     }
 
-
     function HandleSubmit(event){
         event.preventDefault();
 
         const config = {
-            Headers : {
+            headers : {
                 "Authorization": `Bearer ${token}`
             }
         };
@@ -39,16 +39,15 @@ export default function TelaNovaEntrada(){
             type: "saida",
             valor: formatarValor,
             descricao
-        }
+        };
 
         request(config, body);
     }
 
     let navigate = useNavigate();
-    function nextPage(){
-        navigate("/historico");
+    function proximaPagina(){
+        navigate("/historico/");
     }
-
 
     return(
                 <Container>

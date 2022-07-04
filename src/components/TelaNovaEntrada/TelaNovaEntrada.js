@@ -14,9 +14,11 @@ export default function TelaNovaEntrada(){
 
     async function request(config, body){
         try {
-            await axios.post("http://localhost:5000/usuario", body, config);
+            
+            await axios.post("https://mywallet-janu.herokuapp.com/carteira", body, config);
+            
+            proximaPagina();
 
-            nextPage();
         } catch (error) {
             window.alert("Erro no regristo");
         }
@@ -27,7 +29,7 @@ export default function TelaNovaEntrada(){
         event.preventDefault();
 
         const config = {
-            Headers : {
+            headers : {
                 "Authorization": `Bearer ${token}`
             }
         };
@@ -39,17 +41,16 @@ export default function TelaNovaEntrada(){
             type: "entrada",
             valor: formatarValor,
             descricao
-        }
+        };
 
         request(config, body);
     }
 
     let navigate = useNavigate();
-    function nextPage(){
-        navigate("/historico");
+    function proximaPagina(){
+        navigate("/historico/");
     }
-
-
+   
     return(
                 <Container>
                     <h1>Nova entrada</h1>

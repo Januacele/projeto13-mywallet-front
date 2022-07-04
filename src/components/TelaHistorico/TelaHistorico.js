@@ -19,16 +19,15 @@ export default function TelaHistorico(){
 
     async function request(config){
         try {
-            const response = await axios.get("http://localhost:5000/usuario", config);
+            const response = await axios.get("https://mywallet-janu.herokuapp.com/carteira", config);
 
-            const { movimentacao } = response.data;
+            const { movimentacoes } = response.data;
             const novoBalanco = response.data.balanco;
-            setTransacoes(movimentacao);
+            setTransacoes(movimentacoes);
             setBalanco(novoBalanco);
 
-        } catch (e) {
+        } catch (error) {
             window.alert("Erro na obtenção dos dados");
-            console.log(e);
         }
     }
 
@@ -52,8 +51,8 @@ export default function TelaHistorico(){
     }
 
     let navigate = useNavigate();
-    function nextPage(page){
-        navigate(`/${page}`);
+    function proximaPagina(page){
+        navigate(`/historico/${page}`);
     }
 
     function renderizarTransacoes(){
@@ -81,7 +80,7 @@ export default function TelaHistorico(){
     return(
                 <Container>
                     <header>
-                        <p>Olá, {user} </p>
+                        <p>Olá, { user } </p>
                         <img src={logout} alt="Botão de logout" />
                     </header> 
                     <div className='registros'> 
@@ -95,12 +94,12 @@ export default function TelaHistorico(){
                     </div>
 
                     <div className='botoes-movimentacao'> 
-                        <button onClick={() => nextPage("novaEntrada")}>
+                        <button onClick={() => proximaPagina("novaEntrada")}>
                             <img src={plus} alt="Adicionar nova entrada" />
                             <p> Nova entrada </p>
                         </button>
                             
-                        <button onClick={() => nextPage("novaSaida")}>
+                        <button onClick={() => proximaPagina("novaSaida")}>
                             <img src={menus} alt="Adicionar nova saída" />
                             <p> Nova saída </p>
                         </button>
